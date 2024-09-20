@@ -4,7 +4,7 @@ COPY ./*.war /usr/local/tomcat/webapps
 ENV TOMCAT_USER=admin
 ENV TOMCAT_PASSWORD=admin
 EXPOSE 8080
-CMD ["/root/apache-tomcat-9.0.95/bin/startup.sh", "run"]
+CMD ["/root/apache-tomcat-9.0.95/bin/shutdown.sh","/root/apache-tomcat-9.0.95/bin/startup.sh", "run"]
 
 
 
