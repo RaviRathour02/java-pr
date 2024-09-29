@@ -19,6 +19,36 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: war-file
+        path: /home/runner/work/jenkins-pr/jenkins-pr/webapp/target/*.war
+
+    - name: List build directory contents
+      run: ls -la /home/runner/work/jenkins-pr/jenkins-pr/webapp/target
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-south-1
+    - name: Log in to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+    
+    - name: Build Docker image
+      run: |
+        docker build -t github-repo .
+        docker tag github-repo:latest 559050231342.dkr.ecr.ap-south-1.amazonaws.com/github-repo:latest
+    - name: Push Docker image to ECR
+      run: |
+        docker push 559050231342.dkr.ecr.ap-south-1.amazonaws.com/github-repo:latest
+        
     - name: Azure Login
       uses: azure/login@v1
       with:
