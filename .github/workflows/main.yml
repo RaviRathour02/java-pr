@@ -57,3 +57,17 @@ jobs:
     - name: Azure CLI script
       run: |
         az account show
+
+    - name: Set up kubelogin for non-interactive login
+      uses: azure/use-kubelogin@v1
+      with:
+        kubelogin-version: 'v0.0.25'
+
+      # Retrieves your Azure Kubernetes Service cluster's kubeconfig file
+    - name: Get K8s context
+      uses: azure/aks-set-context@v3
+      with:
+        resource-group: dev-grp
+        cluster-name: aa-cluster
+        admin: 'false'
+        use-kubelogin: 'true'
