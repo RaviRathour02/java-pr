@@ -26,10 +26,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: war-file
-        path: /home/runner/work/jenkins-pr/jenkins-pr/webapp/target/*.war
+        path: /home/runner/work/java-pr/java-pr/webapp/target/*.war
 
     - name: List build directory contents
-      run: ls -la /home/runner/work/jenkins-pr/jenkins-pr/webapp/target
+      run: ls -la /home/runner/work/java-pr/java-pr/webapp/target/
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
