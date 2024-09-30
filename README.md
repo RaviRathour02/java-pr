@@ -1,3 +1,4 @@
-Java based registration-app
-<br>
-Test 1
+USING GITHUB ACTION DEPLOY THIS APP TO AKS USING ECR REPOSITORY FOR IMAGE
+------------------------------------------------------------------------------------------
+
+
