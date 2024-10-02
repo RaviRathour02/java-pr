@@ -72,7 +72,7 @@ jobs:
         admin: 'false'
         use-kubelogin: 'true'
 
-    - name: Deploy to EKS
+    - name: Deploy to AKS
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: github-repo
